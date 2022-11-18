@@ -5,4 +5,4 @@ let products = `<a href="./product.html?id=42">
               <p class="productDescription">Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.</p>
             </article>
           </a>`
-document.getElementsByClassName ('items')[0].innerHTML
+document.getElementsByClassName ('items')[0].innerHTML = products
