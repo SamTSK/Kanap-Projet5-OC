@@ -1,0 +1,20 @@
+{
+  "name": "projet-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./back/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamTSK/Kanap-Samira-Tahirou.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamTSK/Kanap-Samira-Tahirou/issues"
+  },
+  "homepage": "https://github.com/SamTSK/Kanap-Samira-Tahirou#readme"
+}
