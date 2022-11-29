@@ -16,8 +16,8 @@ fetch("http://localhost:3000/api/products")
       items.innerHTML += `<a href="./product.html?id=${el._id}">
             <article>
               <img src ="${el.imageUrl}" alt="${el.altTxt}">
-              <h3 class="productName">Kanap ${el.name}</h3>
-              <p class="productDescription">${el.description}Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.</p>
+              <h3 class="productName">${el.name}</h3>
+              <p class="productDescription">${el.description}</p>
             </article>
           </a>`;
     });
