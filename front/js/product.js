@@ -6,6 +6,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
   .then((response) => response.json())
   .then((res) => handleData(res));
 
+  
 // function creation
 function handleData(kanap) {
   const altTxt = kanap.altTxt;
@@ -20,6 +21,7 @@ function handleData(kanap) {
   makeDescription(description);
   makeColors(colors);
 }
+
 // Image
 function makeImage(imageUrl, altTxt) {
   const image = document.createElement("img");
@@ -28,6 +30,7 @@ function makeImage(imageUrl, altTxt) {
   const parent = document.querySelector(".item__img");
   if (parent != null) parent.appendChild(image);
 }
+
 // Title
 function makeTitle(name) {
   const h1 = document.querySelector("#title");
@@ -55,14 +58,31 @@ function makeColors(colors) {
     });
   }
 }
-// Error messages
-const button = document.querySelector("#addToCart")
-if (button!= null) {
+// Error messages & local storage
+const button = document.querySelector("#addToCart");
+if (button != null) {
   button.addEventListener("click", (e) => {
-      const color = document.querySelector("#colors").value
-      const quantity = document.querySelector("#quantity").value
-      if (color == null || color === "" || quantity == 0 || quantity == null) {
-          alert("Veuillez choisoir une couleur & une quantité comprise entre 1 et 100")
-      }
-    })
+    const color = document.querySelector("#colors").value;
+    const quantity = document.querySelector("#quantity").value;
+    if (color == null || color === "" || quantity == 0 || quantity == null) {
+      alert(
+        "Veuillez choisoir une couleur et une quantité comprise entre 1 et 100"
+      ); return true;
+    }
+    if (color == null || color === "") {
+      alert("Veuillez choisoir une couleur");
+    }
+    if (quantity == 0 || quantity == null) {
+      alert("Veuillez choisir une quantité comprise entre 1 et 100");
+    }
+
+
+    const data = {
+        id: id,
+        color: color,
+        quantity: Number(quantity),
+    }
+    localStorage.setItem(id, JSON.stringify(data))
+    window.location.href = "cart.html" // Going to card page 
+  })
 }
