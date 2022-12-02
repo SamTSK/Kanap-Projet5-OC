@@ -1,12 +1,14 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get("id");
+if (id != null) {
+  let imgUrl, altText;
+}
 
 fetch(`http://localhost:3000/api/products/${id}`)
   .then((response) => response.json())
   .then((res) => handleData(res));
 
-  
 // function creation
 function handleData(kanap) {
   const altTxt = kanap.altTxt;
@@ -15,6 +17,8 @@ function handleData(kanap) {
   const imageUrl = kanap.imageUrl;
   const name = kanap.name;
   const price = kanap.price;
+  imgUrl = imageUrl;
+  altText = altTxt;
   makeImage(imageUrl, altTxt);
   makeTitle(name);
   makePrice(price);
@@ -60,29 +64,45 @@ function makeColors(colors) {
 }
 // Error messages & local storage
 const button = document.querySelector("#addToCart");
-if (button != null) {
-  button.addEventListener("click", (e) => {
-    const color = document.querySelector("#colors").value;
-    const quantity = document.querySelector("#quantity").value;
-    if (color == null || color === "" || quantity == 0 || quantity == null) {
-      alert(
-        "Veuillez choisoir une couleur et une quantité comprise entre 1 et 100"
-      ); return true;
-    }
-    if (color == null || color === "") {
-      alert("Veuillez choisoir une couleur");
-    }
-    if (quantity == 0 || quantity == null) {
-      alert("Veuillez choisir une quantité comprise entre 1 et 100");
-    }
+button.addEventListener("click", clicked);
 
 
-    const data = {
-        id: id,
-        color: color,
-        quantity: Number(quantity),
-    }
-    localStorage.setItem(id, JSON.stringify(data))
-    window.location.href = "cart.html" // Going to card page 
-  })
+function clicked(){
+  const color = document.querySelector("#colors").value;
+  const quantity = document.querySelector("#quantity").value;
+  if (ErrorMessage(color, quantity)) return;
+  RegisterCart(color, quantity);
+  GoingToCart();
+}
+
+function RegisterCart(color, quantity) {
+  const data = {
+    id: id,
+    color: color,
+    quantity: Number(quantity),
+    imageUrl: imgUrl,
+    altTxt: altText,
+  };
+  localStorage.setItem(id, JSON.stringify(data));
+}
+
+
+function ErrorMessage(color, quantity) {
+  if (color == null || color === "" || quantity == 0 || quantity == null) {
+    alert(
+      "Veuillez choisoir une couleur et une quantité comprise entre 1 et 100"
+    );
+    return true;
+  }
+  if (color == null || color === "") {
+    alert("Veuillez choisoir une couleur");
+  }
+  if (quantity == 0 || quantity == null) {
+    alert("Veuillez choisir une quantité comprise entre 1 et 100");
+  }
+}
+
+
+function GoingToCart(color, quantity){
+  window.location.href = "cart.html"; 
 }
