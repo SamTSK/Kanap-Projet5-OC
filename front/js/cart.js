@@ -56,6 +56,7 @@ function makeArticle(item){
     article.classList.add("cart__item")
     article.dataset.id = item.id
     article.dataset.color = item.color
+    //article.dataset.price = item.price
     return article
 }
 

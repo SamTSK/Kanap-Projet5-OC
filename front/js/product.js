@@ -2,6 +2,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get("id");
 if (id != null) {
+  let itemPrice = 0
   let imgUrl, altText, articleName
 }
 
@@ -17,9 +18,11 @@ function handleData(kanap) {
   const imageUrl = kanap.imageUrl;
   const name = kanap.name;
   const price = kanap.price;
+  itemPrice = price;
   imgUrl = imageUrl;
   altText = altTxt;
   articleName = name;
+  
   makeImage(imageUrl, altTxt);
   makeTitle(name);
   makePrice(price);
@@ -81,9 +84,11 @@ function RegisterCart(color, quantity) {
     id: id,
     color: color,
     quantity: Number(quantity),
+    price: itemPrice,
     imageUrl: imgUrl,
     altTxt: altText,
     name: articleName,
+    
   };
   localStorage.setItem(id, JSON.stringify(data));
 }
