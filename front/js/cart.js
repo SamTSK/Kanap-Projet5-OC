@@ -29,7 +29,7 @@ colors": [
 function retrieveItemsFromCache(){
     const numberOfItems = localStorage.length
     for (let i = 0; i < numberOfItems; i++){
-        const item = localStorage.getItem(localStorage.key(i))
+        const item = localStorage.getItem(localStorage.key(i)) || ""
         const itemObject = JSON.parse(item)
         cart.push(itemObject)
     }
@@ -42,7 +42,7 @@ function showItem(item){
     const imageInDiv = makeImage(item)  
     article.appendChild(imageInDiv)
 
-    const cardItemContent = makeCartContent(imageInDiv,item)
+    makeCartContent(item)
     article.appendChild(cardItemContent)
 }
 
@@ -71,16 +71,18 @@ function makeImage(item){
     div.appendChild(image)
     return div 
 }
+    
+function makeCartContent(item){
+    const cartItemContent = document.createElement("div")
+    cartItemContent.classList.add("cart__item__content")
 
-function makeCardItemContent(){
-    const div = document.createElement("div")
-    div.classList.add("cart__item__content")
-}
-function makeCartContent(div,item){
     const description = makeDescription(item)
     const sittings = makeSttings()
-    return ""
+
+    cartItemContent.appendChild(description)
+    cartItemContent.appendChild(sittings)
 }
+
 function makeDescription(item){
     const description = document.createElement("div")
     description.classList.add("cart__item__content__description")
@@ -97,9 +99,7 @@ function makeDescription(item){
     description.appendChild(h2)
     description.appendChild(p)
     description.appendChild(p2)
-    div.appendChild(description)
-    
-    return div 
+    return description
 }
 
 function makeSttings(item){
