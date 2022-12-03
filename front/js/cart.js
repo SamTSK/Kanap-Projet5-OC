@@ -39,10 +39,10 @@ function showItem(item){
     const article = makeArticle(item)
     displayArticle(article)
 
-    const div = makeImage(item)  
-    article.appendChild(div)
+    const imageInDiv = makeImage(item)  
+    article.appendChild(imageInDiv)
 
-    const cardItemContent = makeDescription(div,item)
+    const cardItemContent = makeCartDescription(imageInDiv,item)
     article.appendChild(cardItemContent)
 }
 
@@ -72,11 +72,11 @@ function makeImage(item){
     return div 
 }
 
-function makeCardItemContent(item){
+function makeCardItemContent(){
     const div = document.createElement("div")
     div.classList.add("cart__item__content")
 }
-function makeDescription(div,item){
+function makeCartDescription(div,item){
     const description = document.createElement("div")
     description.classList.add("cart__item__content__description")
 
