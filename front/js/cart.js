@@ -86,7 +86,7 @@ function makeCardItemContent(item){
     p.textContent = item.color
 
     const p2 = document.createElement("p")
-    p2.textContent = item.price + "€" 
+    p2.textContent = item.price + " €" 
 
     description.appendChild(h2)
     description.appendChild(p)
