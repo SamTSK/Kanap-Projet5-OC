@@ -1,15 +1,30 @@
 const cart = []
 retrieveItemsFromCache()
 
-cart.forEach((item) => showItem(item))
+cart.forEach((item) => showItem(item)) // Loupe
 
+
+          // Items
 /*altTxt : "Photo d'un canapé d'angle, vert, trois places"
 color : "Green"
 id : "055743915a544fde83cfdfc904935ee7"
 imageUrl : "http://localhost:3000/images/kanap03.jpeg"
 quantity: 3
 */
-
+        // Data
+/*
+colors": [
+    "Blue",
+    "White",
+    "Black"
+    ],
+    "_id": "107fb5b75607497b96722bda5b504926",
+    "name": "Kanap Sinopé",
+    "price": 1849,
+    "imageUrl": "http://localhost:3000/images/kanap01.jpeg",
+    "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "altTxt": "Photo d'un canapé bleu, deux places"
+*/
 
 function retrieveItemsFromCache(){
     const numberOfItems = localStorage.length
@@ -21,6 +36,61 @@ function retrieveItemsFromCache(){
 }
 
 function showItem(item){
-    const itemObject = JSON.parse(item)
+    const article = makeArticle(item)
+    displayArticle(article)
+
+    const div = makeImage(item)  
+    article.appendChild(div)
+
+    const cardItemContent = makeCardItemContent(item)
+    article.appendChild(cardItemContent)
+}
+
+function displayArticle(article) {
+    document.querySelector("#cart__items").appendChild(article)
+}
+
+
+function makeArticle(item){
+    const article = document.createElement("article")
+    article.classList.add("cart__item")
+    article.dataset.id = item.id
+    article.dataset.color = item.color
+    return article
+}
+
+
+function makeImage(item){
+    const div = document.createElement(`div`)
+    div.classList.add(`cart__item__img`)
+
+    const image = document.createElement(`img`)
+    image.src = item.imageUrl
+    image.alt = item.altText
+    div.appendChild(image)
+    return div 
+}
+
+function makeCardItemContent(item){
+    const div = document.createElement("div")
+    div.classList.add("cart__item__content")
+
+    const description = document.createElement("div")
+    description.classList.add("cart__item__content__description")
+
+    const h2 = document.createElement("h2")
+    h2.textContent = item.name
+
+    const p = document.createElement("p")
+    p.textContent = item.color
+
+    const p2 = document.createElement("p")
+    p2.textContent = item.price + "€" 
+
+    description.appendChild(h2)
+    description.appendChild(p)
+    description.appendChild(p2)
+    div.appendChild(description)
     
+    return div 
 }

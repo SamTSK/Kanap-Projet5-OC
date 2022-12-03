@@ -2,7 +2,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get("id");
 if (id != null) {
-  let imgUrl, altText;
+  let imgUrl, altText, articleName
 }
 
 fetch(`http://localhost:3000/api/products/${id}`)
@@ -19,6 +19,7 @@ function handleData(kanap) {
   const price = kanap.price;
   imgUrl = imageUrl;
   altText = altTxt;
+  articleName = name;
   makeImage(imageUrl, altTxt);
   makeTitle(name);
   makePrice(price);
@@ -82,6 +83,7 @@ function RegisterCart(color, quantity) {
     quantity: Number(quantity),
     imageUrl: imgUrl,
     altTxt: altText,
+    name: articleName,
   };
   localStorage.setItem(id, JSON.stringify(data));
 }
