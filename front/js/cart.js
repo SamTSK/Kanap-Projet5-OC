@@ -147,8 +147,15 @@ function addQuantityToSettings(settings, item){
     input.min = "1"
     input.max = "100"
     input.value = item.quantity
+    input.addEventListener("input", () => updatePriceAndQuantity(item.id))
+
     quantity.appendChild(input)
     settings.appendChild(quantity)
+}
+
+function updatePriceAndQuantity(id){
+
+
 }
 
 function addDeleteToSettings(settings){
