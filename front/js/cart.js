@@ -49,7 +49,8 @@ function showItem(item){
 }
 
 function displayTotalQuantity(item){
-    
+    const totalQuantity = document.querySelector("#totalQuantity")
+    totalQuantity.textContent = item.quantity
 }
 
 function displayArticle(article) {
@@ -131,7 +132,8 @@ function addQuantityToSettings(settings, item){
     input.min = "1"
     input.max = "100"
     input.value = item.quantity
-    settings.appendChild(input)
+    quantity.appendChild(input)
+    settings.appendChild(quantity)
 }
 function addDeleteToSettings(settings){
     const div = document.createElement("div")
