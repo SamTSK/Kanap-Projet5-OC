@@ -44,6 +44,12 @@ function showItem(item){
 
     const cartItemContent = makeCartContent(item)
     article.appendChild(cartItemContent)
+
+    displayTotalQuantity(item)
+}
+
+function displayTotalQuantity(item){
+    
 }
 
 function displayArticle(article) {
@@ -134,5 +140,4 @@ function addDeleteToSettings(settings){
     p.textContent = "Supprimer"
     div.appendChild(p)
     settings.appendChild(div)
-
 }
