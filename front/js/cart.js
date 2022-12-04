@@ -123,7 +123,7 @@ function addQuantityToSettings(settings, item){
     input.name = "itemQuantity"
     input.min = "1"
     input.max = "100"
-    input.value = item.price
+    input.value = item.quantity
     settings.appendChild(input)
 
 }
