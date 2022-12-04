@@ -44,8 +44,18 @@ function showItem(item){
 
     const cartItemContent = makeCartContent(item)
     article.appendChild(cartItemContent)
-
+    displayTotalQuantity()
     displayTotalPrice(item)
+}
+
+function displayTotalQuantity(){
+    let total = 0
+    const totalQuantity = document.querySelector("#totalQuantity")
+    cart.forEach((item) => {
+        const totalUnitQuantity = item.quantity
+        total = total + totalUnitQuantity
+    })
+    totalQuantity.textContent = total
 }
 
 function displayTotalPrice(){
