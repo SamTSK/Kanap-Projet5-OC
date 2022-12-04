@@ -154,7 +154,7 @@ function addQuantityToSettings(settings, item){
 }
 
 function updatePriceAndQuantity(id){
-
+    const itemToUpdate = cart.find(item => item.id === id)
 
 }
 
