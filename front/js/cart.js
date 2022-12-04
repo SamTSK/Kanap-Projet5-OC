@@ -42,8 +42,8 @@ function showItem(item){
     const imageInDiv = makeImage(item)  
     article.appendChild(imageInDiv)
 
-    makeCartContent(item)
-    article.appendChild(cardItemContent)
+    const cartItemContent = makeCartContent(item)
+    article.appendChild(cartItemContent)
 }
 
 function displayArticle(article) {
@@ -77,10 +77,11 @@ function makeCartContent(item){
     cartItemContent.classList.add("cart__item__content")
 
     const description = makeDescription(item)
-    const sittings = makeSttings()
+    const settings = makeSettings()
 
     cartItemContent.appendChild(description)
-    cartItemContent.appendChild(sittings)
+    cartItemContent.appendChild(settings)
+    return cartItemContent
 }
 
 function makeDescription(item){
@@ -102,6 +103,16 @@ function makeDescription(item){
     return description
 }
 
-function makeSttings(item){
-    return ""
+function makeSettings(){
+    const settings = document.createElement("div")
+    settings.classList.add("cart__item__content__settings")
+
+    addQuantityToSettings(settings)
+    return settings
+}
+
+function addQuantityToSettings(settings){
+    const quantity = document.createElement("div")
+    quantity.classList.add("cart__item__content__settings__quantity")
+    const p = document.createElement("p")
 }
