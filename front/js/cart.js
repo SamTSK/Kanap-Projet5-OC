@@ -130,7 +130,7 @@ function makeSettings(item){
     settings.classList.add("cart__item__content__settings")
 
     addQuantityToSettings(settings, item)
-    addDeleteToSettings(settings)
+    addDeleteToSettings(settings, item)
     return settings
 }
 
@@ -168,11 +168,17 @@ function saveNewDataToCache(item){
     localStorage.setItem(key, dataToSave)
 }
 
-function addDeleteToSettings(settings){
+function addDeleteToSettings(settings, item){
     const div = document.createElement("div")
     div.classList.add("cart__item__content__settings__delete")
+    div.addEventListener("click", () => deleteItem(item))
+
     const p = document.createElement("p")
     p.textContent = "Supprimer"
     div.appendChild(p)
     settings.appendChild(div)
+}
+
+function deleteItem(item){
+    
 }
