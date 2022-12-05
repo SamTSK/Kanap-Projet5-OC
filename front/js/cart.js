@@ -180,5 +180,6 @@ function addDeleteToSettings(settings, item){
 }
 
 function deleteItem(item){
-    
+    const itemToDelete = cart.findIndex((product) => product.id === item.id && product.color === item.color) 
+    console.log("itemToDelete", itemToDelete)
 }
