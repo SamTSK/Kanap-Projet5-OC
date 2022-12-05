@@ -80,8 +80,9 @@ function clicked(){
 }
 
 function RegisterCart(color, quantity) {
+  const key = `${id}-${color}`
   const data = {
-    id: `${id}`,
+    id: id,
     color: color,
     quantity: Number(quantity),
     price: itemPrice,
@@ -90,7 +91,7 @@ function RegisterCart(color, quantity) {
     name: articleName,
     
   };
-  localStorage.setItem(id, JSON.stringify(data));
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
 
