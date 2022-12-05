@@ -159,7 +159,7 @@ function updatePriceAndQuantity(id, newValue, item){
     item.quantity = itemToUpdate.quantity
     displayTotalQuantity()
     displayTotalPrice()
-    deleteDataFromCache(item)
+    saveNewDataToCache(item)
 }
 
 function deleteDataFromCache(item){
@@ -189,5 +189,11 @@ function deleteItem(item){
     cart.splice(itemToDelete, 1)
     displayTotalQuantity()
     displayTotalPrice()
-    saveNewDataToCache(item)
+    deleteDataFromCache(item)
+    deleteArticleFromPage(item)
+}
+
+function deleteArticleFromPage(item){
+    const articleToDelete = document.querySelector(`article[data-id="${item.id}"][data-color="${item.color}"]`)
+    articleToDelete.remove()
 }
