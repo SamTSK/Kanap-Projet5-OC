@@ -81,7 +81,7 @@ function clicked(){
 
 function RegisterCart(color, quantity) {
   const data = {
-    id: id,
+    id: `${id}`,
     color: color,
     quantity: Number(quantity),
     price: itemPrice,
