@@ -159,7 +159,12 @@ function updatePriceAndQuantity(id, newValue, item){
     item.quantity = itemToUpdate.quantity
     displayTotalQuantity()
     displayTotalPrice()
-    saveNewDataToCache(item)
+    deleteDataFromCache(item)
+}
+
+function deleteDataFromCache(item){
+    const key =`${item.id}-${item.color}`
+    localStorage.removeItem(key)
 }
 
 function saveNewDataToCache(item){
@@ -181,5 +186,8 @@ function addDeleteToSettings(settings, item){
 
 function deleteItem(item){
     const itemToDelete = cart.findIndex((product) => product.id === item.id && product.color === item.color) 
-    console.log("itemToDelete", itemToDelete)
+    cart.splice(itemToDelete, 1)
+    displayTotalQuantity()
+    displayTotalPrice()
+    saveNewDataToCache(item)
 }
