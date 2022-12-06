@@ -203,34 +203,48 @@ function deleteArticleFromPage(item){
 function submitForm(e){
     e.preventDefault()
     if (cart.length === 0) alert("Please select an article to buy")
-    const form = document.querySelector(".cart__order__form")
-
+    
     const body = makeRequestBody()
     fetch("http://localhost:3000/api/products/order", {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin" : "*"
+            
         }
     })
        .then((response) => response.json())
        .then((data) => console.log(data))
-    //console.log(form.elements)
 }
 
 
 function makeRequestBody() {
+    const form = document.querySelector(".cart__order__form")
+    const firstName = form.elements.firstName.value
+    const lastName = form.elements.lastName.value
+    const address = form.elements.address.value
+    const city = form.elements.city.value
+    const email = form.elements.email.value
     const body = {
         contact : {
-            firstName : "",
-            lastName : "",
-            adress : "",
-            city : "",
-            email : "",
+            firstName : firstName,
+            lastName : lastName,
+            address : address,
+            city : city,
+            email : email,
         },
-        products : [""]
+        products : getIdsFromCache()
 }
     return body
+}
 
+function getIdsFromCache(){
+    const numberOfProducts = localStorage.length
+    const ids = []
+    for (let i = 0; i < numberOfProducts; i++) {
+        const key = localStorage.key(i)
+        const id = key.split("-")[0]
+        ids.push(id)
+    }
+    return ids
 }
