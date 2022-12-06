@@ -2,7 +2,9 @@ const cart = []
 retrieveItemsFromCache()
 
 cart.forEach((item) => showItem(item)) // Loupe
-
+ //Form
+const orderButton = document.querySelector("#order")
+orderButton.addEventListener("click", (e) => submitForm(e))
 
           // Items
 /*altTxt : "Photo d'un canapé d'angle, vert, trois places"
@@ -196,4 +198,39 @@ function deleteItem(item){
 function deleteArticleFromPage(item){
     const articleToDelete = document.querySelector(`article[data-id="${item.id}"][data-color="${item.color}"]`)
     articleToDelete.remove()
+}
+
+function submitForm(e){
+    e.preventDefault()
+    if (cart.length === 0) alert("Please select an article to buy")
+    const form = document.querySelector(".cart__order__form")
+
+    const body = makeRequestBody()
+    fetch("http://localhost:3000/api/products/order", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin" : "*"
+        }
+    })
+       .then((response) => response.json())
+       .then((data) => console.log(data))
+    //console.log(form.elements)
+}
+
+
+function makeRequestBody() {
+    const body = {
+        contact : {
+            firstName : "",
+            lastName : "",
+            adress : "",
+            city : "",
+            email : "",
+        },
+        products : [""]
+}
+    return body
+
 }
