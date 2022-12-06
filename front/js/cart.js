@@ -222,10 +222,9 @@ function submitForm(e){
        .then((data) => {
         const orderId = data.orderId                  // Confirmation message 
         window.location.href = "/front/html/confirmation.html" + "?orderId=" + orderId
-        return console.log(data)
        })
 
-       .catch((error) => console.log(error)) // Displaying error
+       .catch((error) => console.error(error)) // Displaying error
 }
 
 function validateEmail(){
