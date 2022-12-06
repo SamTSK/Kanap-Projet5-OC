@@ -202,21 +202,47 @@ function deleteArticleFromPage(item){
 
 function submitForm(e){
     e.preventDefault()
-    if (cart.length === 0) alert("Please select an article to buy")
+    if (cart.length === 0) {
+        alert("Veuillez sélectionner un article")
+        return
+    }
     
+   if (validateForm()) return // Empty fields 
+   if (validateEmail()) return // error messages
+
     const body = makeRequestBody()
     fetch("http://localhost:3000/api/products/order", {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
             "Content-Type": "application/json",
-            
         }
     })
        .then((response) => response.json())
        .then((data) => console.log(data))
 }
 
+function validateEmail(){
+    const email = document.querySelector("#email").value
+    const regex = /^[A-Za-z0-9+_.-]+@(.+)$/
+    if (regex.test(email) === false) {
+        alert("Veuillez saisir une adresse email valide")
+        return true
+    }
+    return false
+}
+
+function validateForm() {
+    const form = document.querySelector(".cart__order__form")
+    const inputs = form.querySelectorAll("input")
+    inputs.forEach((input) => {
+        if (input.value === "") {
+            alert("Veuillez renseigner tous les champs")
+            return true
+        }
+        return false
+    })
+}
 
 function makeRequestBody() {
     const form = document.querySelector(".cart__order__form")
