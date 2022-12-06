@@ -239,14 +239,16 @@ function validateEmail(){
 
 function validateForm() {
     const form = document.querySelector(".cart__order__form")
+    let error = false
     const inputs = form.querySelectorAll("input")
-    inputs.forEach((input) => {
+    Array.from(inputs).every((input) => {
         if (input.value === "") {
             alert("Veuillez renseigner tous les champs")
-            return true
-        }
-        return false
+            error = true;
+            return;
+        }   
     })
+    return error
 }
 
 function makeRequestBody() {

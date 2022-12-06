@@ -96,7 +96,7 @@ function RegisterCart(color, quantity) {
 
 
 function ErrorMessage(color, quantity) {
-  if (color == null || color === "" || quantity == 0 || quantity == null) {
+  if ((color == null || color === "") && (quantity == 0 || quantity == null)) {
     alert(
       "Veuillez choisoir une couleur et une quantité comprise entre 1 et 100"
     );
@@ -104,9 +104,11 @@ function ErrorMessage(color, quantity) {
   }
   if (color == null || color === "") {
     alert("Veuillez choisoir une couleur");
+    return true;
   }
   if (quantity == 0 || quantity == null) {
     alert("Veuillez choisir une quantité comprise entre 1 et 100");
+    return true;
   }
 }
 
