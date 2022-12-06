@@ -66,7 +66,7 @@ function makeColors(colors) {
     });
   }
 }
-// Error messages & local storage
+// Display Error messages & local storage
 const button = document.querySelector("#addToCart");
 button.addEventListener("click", clicked);
 
