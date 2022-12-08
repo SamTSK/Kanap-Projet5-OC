@@ -1,6 +1,9 @@
+// Getting Ids from API
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get("id");
+
 if (id != null) {
   let itemPrice = 0
   let imgUrl, altText, articleName
@@ -10,7 +13,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
   .then((response) => response.json())
   .then((res) => handleData(res));
 
-// function creation
+// function for items below
 function handleData(kanap) {
   const altTxt = kanap.altTxt;
   const colors = kanap.colors;
@@ -44,11 +47,11 @@ function makeTitle(name) {
   const h1 = document.querySelector("#title");
   if (h1 != null) h1.textContent = name;
 }
-// Price
+// Display Article Price before addingg in the Cart
 function makePrice(price) {
   const span = document.querySelector("#price");
   if (span != null) span.textContent = price;
-}
+} 
 // Description
 function makeDescription(description) {
   const p = document.querySelector("#description");
@@ -66,10 +69,10 @@ function makeColors(colors) {
     });
   }
 }
-// Display Error messages & local storage
+// Creating click events
 const button = document.querySelector("#addToCart");
 button.addEventListener("click", clicked);
-
+// And then 
 // Display error messages when user forgets to choose "color" or "quantity" 
 function clicked(){
   const color = document.querySelector("#colors").value;
@@ -86,7 +89,7 @@ function RegisterCart(color, quantity) {
     id: id,
     color: color,
     quantity: Number(quantity),
-    price: itemPrice,
+    price: itemPrice, // Remove price from local storage
     imageUrl: imgUrl,
     altTxt: altText,
     name: articleName,
