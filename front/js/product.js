@@ -90,7 +90,7 @@ function RegisterCart(color, quantity) {
     id: id,
     color: color,
     quantity: Number(quantity),
-    price: itemPrice, // Remove price from local storage
+    price: itemPrice, 
     imageUrl: imgUrl,
     altTxt: altText,
     name: articleName,
