@@ -4,6 +4,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get("id");
 
+// Variables for Cart Items
 if (id != null) {
   let itemPrice = 0
   let imgUrl, altText, articleName
@@ -115,6 +116,7 @@ function ErrorMessage(color, quantity) {
   }
 }
 
+// Going to cart 
 function GoingToCart(color, quantity){
   window.location.href = "cart.html"; 
 }
