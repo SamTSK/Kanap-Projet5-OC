@@ -37,8 +37,8 @@ function retrieveItemsFromCache(){
         cart.push(itemObject)
     }
 }
-// Display Items
 
+// Display Items
 function showItem(item){
     const article = makeArticle(item)
     displayArticle(article)
@@ -51,8 +51,8 @@ function showItem(item){
     displayTotalQuantity()
     displayTotalPrice(item)
 }
-// Display Total quantity of our articles 
 
+// Display Total quantity of our articles 
 function displayTotalQuantity(){
     let total = 0
     const totalQuantity = document.querySelector("#totalQuantity")
@@ -63,7 +63,6 @@ function displayTotalQuantity(){
     totalQuantity.textContent = total
 }
 // Display Total price of our articles 
-
 function displayTotalPrice(){
     let total = 0
     const totalPrice = document.querySelector("#totalPrice")
@@ -73,8 +72,8 @@ function displayTotalPrice(){
     })
     totalPrice.textContent = total
 }
-// Display Article
 
+// Display Article
 function displayArticle(article) {
     document.querySelector("#cart__items").appendChild(article)
 }
@@ -87,7 +86,7 @@ function makeArticle(item){
     return article
 }
 
-
+// Images
 function makeImage(item){
     const div = document.createElement(`div`)
     div.classList.add(`cart__item__img`)
@@ -98,7 +97,8 @@ function makeImage(item){
     div.appendChild(image)
     return div 
 }
-    
+ 
+// Cart content
 function makeCartContent(item){
     const cartItemContent = document.createElement("div")
     cartItemContent.classList.add("cart__item__content")
@@ -110,7 +110,7 @@ function makeCartContent(item){
     cartItemContent.appendChild(settings)
     return cartItemContent
 }
-
+// Description of items
 function makeDescription(item){
     const description = document.createElement("div")
     description.classList.add("cart__item__content__description")
@@ -130,6 +130,7 @@ function makeDescription(item){
     return description
 }
 
+// Make settings
 function makeSettings(item){
     const settings = document.createElement("div")
     settings.classList.add("cart__item__content__settings")
@@ -138,6 +139,7 @@ function makeSettings(item){
     addDeleteToSettings(settings, item)
     return settings
 }
+
 // Adding total quantity to settings
 function addQuantityToSettings(settings, item){
     const quantity = document.createElement("div")
@@ -157,6 +159,7 @@ function addQuantityToSettings(settings, item){
     quantity.appendChild(input)
     settings.appendChild(quantity)
 }
+
 // Display New total price & quantities of our articles in the cart
 function updatePriceAndQuantity(id, newValue, item){
     const itemToUpdate = cart.find((item) => item.id === id)
@@ -167,17 +170,20 @@ function updatePriceAndQuantity(id, newValue, item){
     saveNewDataToCache(item)
 }
 
+// Delete data from the cache after order has been processed
 function deleteDataFromCache(item){
     const key =`${item.id}-${item.color}`
     localStorage.removeItem(key)
 }
 
+// Save data from the local storage
 function saveNewDataToCache(item){
     const dataToSave = JSON.stringify(item)
     const key = `${item.id}-${item.color}`
     localStorage.setItem(key, dataToSave)
 }
 
+// Adding delete button 
 function addDeleteToSettings(settings, item){
     const div = document.createElement("div")
     div.classList.add("cart__item__content__settings__delete")

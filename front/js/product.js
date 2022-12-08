@@ -76,7 +76,7 @@ function clicked(){
   const quantity = document.querySelector("#quantity").value;
   if (ErrorMessage(color, quantity)) return;
   RegisterCart(color, quantity);
-  GoingToCart();
+  GoingToCart(color, quantity);
 }
 
 // Order registration in cart
@@ -94,7 +94,7 @@ function RegisterCart(color, quantity) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-
+// Display error messages
 function ErrorMessage(color, quantity) {
   if ((color == null || color === "") && (quantity == 0 || quantity == null)) {
     alert(
@@ -111,7 +111,6 @@ function ErrorMessage(color, quantity) {
     return true;
   }
 }
-
 
 function GoingToCart(color, quantity){
   window.location.href = "cart.html"; 
