@@ -95,6 +95,7 @@ function makeImage(item){
     image.src = item.imageUrl
     image.alt = item.altText
     div.appendChild(image)
+
     return div 
 }
  
