@@ -5,7 +5,7 @@ if (id != null) {
   let itemPrice = 0
   let imgUrl, altText, articleName
 }
-
+// 
 fetch(`http://localhost:3000/api/products/${id}`)
   .then((response) => response.json())
   .then((res) => handleData(res));
@@ -70,7 +70,7 @@ function makeColors(colors) {
 const button = document.querySelector("#addToCart");
 button.addEventListener("click", clicked);
 
-
+// Display error messages when user forgets to choose "color" or "quantity" 
 function clicked(){
   const color = document.querySelector("#colors").value;
   const quantity = document.querySelector("#quantity").value;
@@ -79,6 +79,7 @@ function clicked(){
   GoingToCart();
 }
 
+// Order registration in cart
 function RegisterCart(color, quantity) {
   const key = `${id}-${color}`
   const data = {
@@ -89,7 +90,6 @@ function RegisterCart(color, quantity) {
     imageUrl: imgUrl,
     altTxt: altText,
     name: articleName,
-    
   };
   localStorage.setItem(key, JSON.stringify(data));
 }

@@ -78,8 +78,6 @@ function displayTotalPrice(){
 function displayArticle(article) {
     document.querySelector("#cart__items").appendChild(article)
 }
-
-
 function makeArticle(item){
     const article = document.createElement("article")
     article.classList.add("cart__item")
@@ -140,8 +138,7 @@ function makeSettings(item){
     addDeleteToSettings(settings, item)
     return settings
 }
-// How to add total quantity to settings
-
+// Adding total quantity to settings
 function addQuantityToSettings(settings, item){
     const quantity = document.createElement("div")
     quantity.classList.add("cart__item__content__settings__quantity")
@@ -160,7 +157,7 @@ function addQuantityToSettings(settings, item){
     quantity.appendChild(input)
     settings.appendChild(quantity)
 }
-
+// Display New total price & quantities of our articles in the cart
 function updatePriceAndQuantity(id, newValue, item){
     const itemToUpdate = cart.find((item) => item.id === id)
     itemToUpdate.quantity = Number(newValue)
@@ -206,7 +203,7 @@ function deleteArticleFromPage(item){
     const articleToDelete = document.querySelector(`article[data-id="${item.id}"][data-color="${item.color}"]`)
     articleToDelete.remove()
 }
-
+// Process to have confirmation message displayed
 function submitForm(e){
     e.preventDefault()
     if (cart.length === 0) {
@@ -234,6 +231,7 @@ function submitForm(e){
        .catch((error) => console.error(error)) // Displaying error
 }
 
+// Function for sending error message to the user when the email is not correct.
 function validateEmail(){
     const email = document.querySelector("#email").value
     const regex = /^[A-Za-z0-9+_.-]+@(.+)$/
@@ -244,6 +242,8 @@ function validateEmail(){
     return false
 }
 
+
+// validating the form before confirmation
 function validateForm() {
     const form = document.querySelector(".cart__order__form")
     let error = false
@@ -257,7 +257,7 @@ function validateForm() {
     })
     return error
 }
-
+// Filling form validation
 function makeRequestBody() {
     const form = document.querySelector(".cart__order__form")
     const firstName = form.elements.firstName.value
@@ -277,7 +277,7 @@ function makeRequestBody() {
 }
     return body
 }
-
+// Gettings articles Ids from the local storage
 function getIdsFromCache(){
     const numberOfProducts = localStorage.length
     const ids = []
