@@ -28,6 +28,7 @@ colors": [
     "altTxt": "Photo d'un canapé bleu, deux places"
 */
 
+// Retrieve cache items
 function retrieveItemsFromCache(){
     const numberOfItems = localStorage.length
     for (let i = 0; i < numberOfItems; i++){
@@ -36,6 +37,7 @@ function retrieveItemsFromCache(){
         cart.push(itemObject)
     }
 }
+// Display Items
 
 function showItem(item){
     const article = makeArticle(item)
@@ -49,6 +51,7 @@ function showItem(item){
     displayTotalQuantity()
     displayTotalPrice(item)
 }
+// Display Total quantity of our articles 
 
 function displayTotalQuantity(){
     let total = 0
@@ -59,6 +62,7 @@ function displayTotalQuantity(){
     })
     totalQuantity.textContent = total
 }
+// Display Total price of our articles 
 
 function displayTotalPrice(){
     let total = 0
@@ -69,6 +73,7 @@ function displayTotalPrice(){
     })
     totalPrice.textContent = total
 }
+// Display Article
 
 function displayArticle(article) {
     document.querySelector("#cart__items").appendChild(article)
@@ -135,6 +140,7 @@ function makeSettings(item){
     addDeleteToSettings(settings, item)
     return settings
 }
+// How to add total quantity to settings
 
 function addQuantityToSettings(settings, item){
     const quantity = document.createElement("div")
@@ -185,7 +191,7 @@ function addDeleteToSettings(settings, item){
     div.appendChild(p)
     settings.appendChild(div)
 }
-
+// Delete items from cache
 function deleteItem(item){
     const itemToDelete = cart.findIndex((product) => product.id === item.id && product.color === item.color) 
     cart.splice(itemToDelete, 1)
@@ -195,6 +201,7 @@ function deleteItem(item){
     deleteArticleFromPage(item)
 }
 
+// Delete items from our page
 function deleteArticleFromPage(item){
     const articleToDelete = document.querySelector(`article[data-id="${item.id}"][data-color="${item.color}"]`)
     articleToDelete.remove()

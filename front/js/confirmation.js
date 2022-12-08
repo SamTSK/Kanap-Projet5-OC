@@ -1,3 +1,6 @@
+// Process to get the confimation message
+// I fist named my variables and then create my functions
+
 const orderId = getOrderId()
 displayOrderId (orderId)
 clearLocalStorage()

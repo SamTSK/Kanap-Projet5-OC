@@ -7,6 +7,9 @@
           </a>`; */
 //document.getElementsByClassName ('items')[0].innerHTML = products;
 
+
+// Using this method to call my data from the back. I use this type of brakets "{}" and the "$" symbol to insert my variables into the string below.
+     
 fetch("http://localhost:3000/api/products")
   .then(function (response) {
     return response.json();
