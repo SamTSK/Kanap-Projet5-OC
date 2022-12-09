@@ -96,6 +96,7 @@ function RegisterCart(color, quantity) {
     name: articleName,
   };
   localStorage.setItem(key, JSON.stringify(data));
+  
 }
 
 // Display error messages
@@ -107,7 +108,7 @@ function ErrorMessage(color, quantity) {
     return true;
   }
   if (color == null || color === "") {
-    alert("Veuillez choisoir une couleur");
+    alert("Veuillez choisir une couleur");
     return true;
   }
   if (quantity == 0 || quantity == null) {
