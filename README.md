@@ -31,3 +31,8 @@ Votre client est Kanap, une marque de canapés qui vend ses produits depuis sa b
 - Valider des données issues de sources externes.
 - Créer un plan de test pour une application.
 - Respecter [les spécifications fonctionnelles et techniques](https://course.oc-static.com/projects/DWJ_FR_P5/DW+P5+-+Etapes+cles.pdf).
+
+## Infos Supp pour mener à bien le projet
+📌 [Cahier des charges](https://course.oc-static.com/projects/DWJ_FR_P5/DW+P5+-+Specifications+fonctionnelles.pdf).
+
+📌 [Spécifications fonctionnelles et techniques](https://course.oc-static.com/projects/DWJ_FR_P5/DW+P5+-+Etapes+cles.pdf).
