@@ -90,7 +90,7 @@ function RegisterCart(color, quantity) {
     id: id,
     color: color,
     quantity: Number(quantity),
-    price: itemPrice, 
+   // price: itemPrice, 
     imageUrl: imgUrl,
     altTxt: altText,
     name: articleName,

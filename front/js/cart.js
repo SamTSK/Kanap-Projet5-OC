@@ -1,8 +1,9 @@
 const cart = []
 retrieveItemsFromCache()
 
-cart.forEach((item) => showItem(item)) // Loupe
- //Form
+cart.forEach(async (item) => {
+    await showItem(item);
+});
 const orderButton = document.querySelector("#order")
 orderButton.addEventListener("click", (e) => submitForm(e))
 
@@ -39,17 +40,23 @@ function retrieveItemsFromCache(){
 }
 
 // Display Items
-function showItem(item){
-    const article = makeArticle(item)
-    displayArticle(article)
+function showItem(item){ 
+    fetch(`http://localhost:3000/api/products/${item.id}`)
+  .then((response) => response.json())
+  .then( function(res){
+      item.price = res.price
+      const article = makeArticle(item)
+      displayArticle(article)
+    
+      const imageInDiv = makeImage(item)  
+      article.appendChild(imageInDiv)
+    
+      const cartItemContent = makeCartContent(item)
+      article.appendChild(cartItemContent)
+      displayTotalQuantity()
+      displayTotalPrice(item)
+  });
 
-    const imageInDiv = makeImage(item)  
-    article.appendChild(imageInDiv)
-
-    const cartItemContent = makeCartContent(item)
-    article.appendChild(cartItemContent)
-    displayTotalQuantity()
-    displayTotalPrice(item)
 }
 
 // Display Total quantity of our articles 
@@ -64,13 +71,21 @@ function displayTotalQuantity(){
 }
 // Display Total price of our articles 
 function displayTotalPrice(){
+
     let total = 0
     const totalPrice = document.querySelector("#totalPrice")
-    cart.forEach((item) => {
-        const totalUnitPrice = item.price * item.quantity
-        total = total + totalUnitPrice
+    cart.forEach(async(item) => {
+        await fetch(`http://localhost:3000/api/products/${item.id}`)
+  .then((response) => response.json())
+  .then( function(res){
+      console.log(res)
+
+      const totalUnitPrice = res.price * item.quantity
+      total = total + totalUnitPrice
+      totalPrice.textContent = total
     })
-    totalPrice.textContent = total
+});
+console.log(total)
 }
 
 // Display Article
@@ -93,7 +108,7 @@ function makeImage(item){
 
     const image = document.createElement(`img`)
     image.src = item.imageUrl
-    image.alt = item.altText
+    image.alt = item.altTxt
     div.appendChild(image)
 
     return div 
@@ -179,8 +194,10 @@ function deleteDataFromCache(item){
 
 // Save data from the local storage
 function saveNewDataToCache(item){
+    delete item.price;
     const dataToSave = JSON.stringify(item)
     const key = `${item.id}-${item.color}`
+    
     localStorage.setItem(key, dataToSave)
 }
 
@@ -295,3 +312,4 @@ function getIdsFromCache(){
     }
     return ids
 }
+
