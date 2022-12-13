@@ -78,14 +78,12 @@ function displayTotalPrice(){
         await fetch(`http://localhost:3000/api/products/${item.id}`)
   .then((response) => response.json())
   .then( function(res){
-      console.log(res)
-
       const totalUnitPrice = res.price * item.quantity
       total = total + totalUnitPrice
       totalPrice.textContent = total
     })
 });
-console.log(total)
+
 }
 
 // Display Article
@@ -180,7 +178,7 @@ function addQuantityToSettings(settings, item){
 function updatePriceAndQuantity(id, newValue, item){
     const itemToUpdate = cart.find((item) => item.id === id)
     itemToUpdate.quantity = Number(newValue)
-    item.quantity = itemToUpdate.quantity
+    item.quantity = itemToUpdate.quantity 
     displayTotalQuantity()
     displayTotalPrice()
     saveNewDataToCache(item)
